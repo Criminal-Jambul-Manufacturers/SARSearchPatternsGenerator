@@ -59,14 +59,14 @@ namespace SARSearchPatternGenerator
         private Label label8;
         private Label label9;
         private Label label10;
-        private InputUnits inputUnits2;
-        private InputUnits inputUnits3;
+        private InputDistance inputUnits2;
+        private InputDistance inputUnits3;
         private Label label11;
         private Label label12;
         private Label label13;
         private Label label14;
-        private ResXResourceSet imgResource;
         private PatternInput inputGroup1;
+        private string unitText = "nm";
 
         public PatternDisplay() : base()
         {
@@ -97,8 +97,8 @@ namespace SARSearchPatternGenerator
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.inputUnits2 = new SARSearchPatternGenerator.InputUnits();
-            this.inputUnits3 = new SARSearchPatternGenerator.InputUnits();
+            this.inputUnits2 = new SARSearchPatternGenerator.InputDistance();
+            this.inputUnits3 = new SARSearchPatternGenerator.InputDistance();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -164,24 +164,6 @@ namespace SARSearchPatternGenerator
             this.inputGroup1.Location = new System.Drawing.Point(3, 3);
             this.inputGroup1.Name = "inputGroup1";
             this.inputGroup1.RowCount = 1;
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
@@ -470,18 +452,18 @@ namespace SARSearchPatternGenerator
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(182, 144);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(36, 17);
+            this.label12.Size = new System.Drawing.Size(44, 17);
             this.label12.TabIndex = 9;
-            this.label12.Text = "0 m²";
+            this.label12.Text = "0 nm²";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(182, 180);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(36, 17);
+            this.label13.Size = new System.Drawing.Size(44, 17);
             this.label13.TabIndex = 10;
-            this.label13.Text = "0 m²";
+            this.label13.Text = "0 nm²";
             // 
             // label14
             // 
@@ -683,8 +665,8 @@ namespace SARSearchPatternGenerator
             this.comboBox1.SelectedIndex = 0;
             this.inputUnits1.changeUnitText("m");
             this.inputUnits1.setValue(300);
-            this.inputUnits2.changeUnitText("km/h");
-            this.inputUnits3.changeUnitText("m");
+            this.inputUnits2.changeUnitText("nm/h");
+            this.inputUnits3.changeUnitText("nm");
             this.inputUnits2.changed += onDataInputChange;
             this.inputUnits3.changed += onDataInputChange;
             this.inputGroup1.valueChanged += onDataInputChange;
@@ -749,7 +731,26 @@ namespace SARSearchPatternGenerator
 
         public void changeUnitSystem(string name, DistanceUnit d)
         {
+            this.unitText = name;
             inputGroup1.changeUnits(name, d);
+
+            double tmp = inputUnits2.unit.convertFrom(inputUnits2.value);
+            inputUnits2.changeUnitText(name + "/h");
+            inputUnits2.unit = d;
+            EventHandler tmpEvents = inputUnits2.changed;
+            inputUnits2.changed = null;
+            inputUnits2.setValue(inputUnits2.unit.convertTo(tmp));
+            inputUnits2.changed = tmpEvents;
+
+            tmp = inputUnits3.unit.convertFrom(inputUnits2.value);
+            inputUnits3.changeUnitText(name);
+            inputUnits3.unit = d;
+            tmpEvents = inputUnits2.changed;
+            inputUnits3.changed = null;
+            inputUnits3.setValue(inputUnits2.unit.convertTo(tmp));
+            inputUnits3.changed = tmpEvents;
+
+            updatePatternInfo(this.controller.getPattern());
         }
 
         public void changeCoordinateSystem(CoordSystem system)
@@ -826,8 +827,8 @@ namespace SARSearchPatternGenerator
         public void updatePatternInfo(Pattern p)
         {
             label11.Text = p.getSearchTime() + " h";
-            label12.Text = p.getAreaEffectivelySwept() + " m²";
-            label13.Text = p.getAreaCoverage() + " m²";
+            label12.Text = p.getAreaEffectivelySwept() + " " + unitText + "²";
+            label13.Text = p.getAreaCoverage() + " " + unitText + "²";
             label14.Text = p.getProbabilityOfDetection() +"%";
         }
 
