@@ -57,6 +57,12 @@
     <Compile Include="coords\DegDecMin.cs" />
     <Compile Include="coords\DegMinSec.cs" />
     <Compile Include="coords\FlatCoordinate.cs" />
+    <Compile Include="DefaultComments.Designer.cs" />
+    <Compile Include="DefaultComments1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DefaultComments.resx</DependentUpon>
+    </Compile>
     <Compile Include="FileConverter.cs" />
     <Compile Include="guicontrols\coordinate\InputDegreeDecimalMinutes.cs">
       <SubType>UserControl</SubType>
@@ -138,6 +144,7 @@
     <Compile Include="guicontrols\pattern\SectorSearchInput.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="SavedData.cs" />
     <Compile Include="Window.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +152,10 @@
       <DependentUpon>Window.cs</DependentUpon>
     </Compile>
     <Compile Include="WindowController.cs" />
+    <EmbeddedResource Include="DefaultComments.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DefaultComments1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="guicontrols\coordinate\InputDegreeDecimalMinutes.resx">
       <DependentUpon>InputDegreeDecimalMinutes.cs</DependentUpon>
     </EmbeddedResource>

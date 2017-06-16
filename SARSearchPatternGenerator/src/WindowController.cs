@@ -18,8 +18,8 @@ namespace SARSearchPatternGenerator
         Window mainWindow;
 
         /*
-* Constructor for this WindowController class.  It starts running the main Window. 
-*/
+        * Constructor for this WindowController class.  It starts running the main Window. 
+        */
         public WindowController() {
             //This is what STARTS the main window.
             mainWindow = new Window();
@@ -40,19 +40,22 @@ namespace SARSearchPatternGenerator
         {
             PatternController pc = new PatternController();
             mainWindow.setDisplay(pc);
-            pc.updateSettings();
+            pc.defaultInitialize();
             mainWindow.unitChange();
             mainWindow.coordSystemChange();
             writeSystemText("New pattern created");
         }
-        public void createFromPattern(Pattern p)
+        public void createFromPattern(SavedData sd, Pattern p)
         {
+            this.mainWindow.setSelectedUnitType(sd.unitSystem);
+            this.mainWindow.setSelectedCoordType(sd.coordinateSystem);
             PatternController pc = new PatternController();
             mainWindow.setDisplay(pc);
-            pc.updateSettings();
+            pc.defaultInitialize();
             mainWindow.unitChange();
             mainWindow.coordSystemChange();
-            pc.createFromPattern(p);
+            pc.createFromPattern(sd.patternType, p);
+            pc.loadData(sd);
             writeSystemText("Pattern Loaded");
         }
         public void onClose()
@@ -65,6 +68,16 @@ namespace SARSearchPatternGenerator
                     DataContractSerializer dcs = new DataContractSerializer(p.GetType());
                     fStream = new FileStream(".\\pattern.xml", FileMode.Create);
                     dcs.WriteObject(fStream, p);
+
+                    if (this.mainWindow.getDisplay() != null)
+                    {
+                        fStream.Close();
+                        dcs = new DataContractSerializer(typeof(FileMode));
+                        fStream = new FileStream(".\\misc.xml", FileMode.Create);
+                        SavedData sd = this.mainWindow.getDisplay().getSavedData();
+                        dcs = new DataContractSerializer(sd.GetType());
+                        dcs.WriteObject(fStream, sd);
+                    }
                 }
                 finally
                 {
@@ -74,8 +87,6 @@ namespace SARSearchPatternGenerator
                     }
                 }
             }
-            Properties.Settings.Default["comment"] = this.mainWindow.getDisplay().getComment();
-            Console.WriteLine(Properties.Settings.Default["comment"]);
             Console.WriteLine("Program closed");
         }
         public void onProgramStart()
@@ -86,15 +97,20 @@ namespace SARSearchPatternGenerator
                 DataContractSerializer dcs = new DataContractSerializer(typeof(Pattern));
                 fStream = new FileStream(".\\pattern.xml", FileMode.Open);
                 Pattern p = (Pattern)dcs.ReadObject(XmlReader.Create(fStream), false);
-                createFromPattern(p);
+                fStream.Close();
+
+                dcs = new DataContractSerializer(typeof(SavedData));
+                fStream = new FileStream(".\\misc.xml", FileMode.Open);
+                SavedData sd = (SavedData)dcs.ReadObject(XmlReader.Create(fStream), false);
+                createFromPattern(sd, p);
             }
             catch (FileNotFoundException)
             {
-                writeSystemText("No previous pattern found");
+                writeSystemText("Previous data not found");
             }
             catch (SerializationException)
             {
-                writeSystemText("Problem reading previous pattern data");
+                writeSystemText("Problem reading previous data");
             }
             finally
             {

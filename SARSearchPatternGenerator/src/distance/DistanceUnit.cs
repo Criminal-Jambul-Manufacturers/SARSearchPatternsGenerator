@@ -21,5 +21,6 @@ namespace SARSearchPatternGenerator
          * Converts dist from the extended class' unit to kilometers.
          */
         public abstract double convertFrom(double dist);
+        public abstract int getID();
     }
 }

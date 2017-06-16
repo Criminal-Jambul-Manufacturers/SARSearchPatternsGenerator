@@ -13,9 +13,13 @@ namespace SARSearchPatternGenerator
     [DataContract]
     public class DegDecMin : Coordinate
     {
+        [DataMember]
         protected double latDegrees;
+        [DataMember]
         protected double lngDegrees;
+        [DataMember]
         protected double latMinutes;
+        [DataMember]
         protected double lngMinutes;
 
         /*
