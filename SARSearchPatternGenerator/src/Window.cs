@@ -50,6 +50,16 @@ namespace SARSearchPatternGenerator
             this.PerformLayout();
         }
 
+        internal void setSelectedUnitType(int unitSystem)
+        {
+            toolStripComboBox1.SelectedIndex = unitSystem;
+        }
+
+        internal void setSelectedCoordType(int coordinateSystem)
+        {
+            toolStripComboBox2.SelectedIndex = coordinateSystem;
+        }
+
         public DisplayController getDisplay()
         {
             return currentDisplay;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
-using SARSearchPatternsGenerator.src;
+using SARSearchPatternGenerator.data;
 
 namespace SARSearchPatternGenerator
 {
@@ -21,7 +21,6 @@ namespace SARSearchPatternGenerator
 
         public ParallelTrackPattern() : base()
         {
-            comment = (string)DefaultComments.ResourceManager.GetObject("ParallelTrackComment");
         }
 
 

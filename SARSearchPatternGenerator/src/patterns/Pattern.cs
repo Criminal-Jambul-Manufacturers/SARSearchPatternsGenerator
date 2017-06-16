@@ -1,4 +1,4 @@
-﻿using SARSearchPatternsGenerator.src;
+﻿using SARSearchPatternGenerator.data;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -29,14 +29,11 @@ namespace SARSearchPatternGenerator
         protected int numLegs;
         [DataMember]
         protected bool turnRight;
-        [DataMember]
-        public string comment;
 
 
         public Pattern()
         {
             points = new List<Coordinate>();
-            comment = (string)DefaultComments.ResourceManager.GetObject("PointToPointComment");
         }
 
         /*

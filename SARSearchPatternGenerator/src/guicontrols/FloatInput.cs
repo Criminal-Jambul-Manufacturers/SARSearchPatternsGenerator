@@ -15,7 +15,7 @@ namespace SARSearchPatternGenerator
     public class FloatInput : TextBox
     {
         private double value = 0;
-        private int _precision = 3;
+        private int _precision = 6;
         public int precision
         {
             get

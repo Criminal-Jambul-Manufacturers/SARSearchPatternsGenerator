@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SARSearchPatternsGenerator.src;
+using SARSearchPatternGenerator.data;
 
 namespace SARSearchPatternGenerator
 {
@@ -16,7 +16,6 @@ namespace SARSearchPatternGenerator
 
         public ExpandingSquarePattern() :base()
         {
-            comment = (string)DefaultComments.ResourceManager.GetObject("ExpandingSquareComment");
         }
 
         /*

@@ -11,16 +11,25 @@ namespace SARSearchPatternGenerator
     /// An input class that handles all of the input classes and other fields
     /// required for a particular pattern.
     /// </summary>
-    public abstract class PatternInput : InputGroup
+    public class PatternInput : InputGroup
     {
         protected List<InputDistance> distanceInputs;
         protected List<InputCoordinate> coordinateInputs;
         protected string unitName = "nm";
         protected DistanceUnit unit = NauticalMiles.create();
         protected CoordSystem coordinateSystem = CoordSystem.DecDeg;
-        public abstract Pattern getPattern();
-        public abstract Pattern getFlatPattern();
-        public abstract void updateFieldsFromPattern(Pattern p);
+        public virtual Pattern getPattern()
+        {
+            return null;
+        }
+        public virtual Pattern getFlatPattern()
+        {
+            return null;
+        }
+        public virtual void updateFieldsFromPattern(Pattern p)
+        {
+
+        }
         public PatternInput(): base()
         {
             distanceInputs = new List<InputDistance>();

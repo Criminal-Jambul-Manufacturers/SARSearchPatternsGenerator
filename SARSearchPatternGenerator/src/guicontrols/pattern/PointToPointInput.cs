@@ -29,6 +29,8 @@ namespace SARSearchPatternGenerator
             add.Text = "Add";
             add.Click += onAddPoint;
 
+            this.RowCount = 0;
+
             this.Controls.Add(add, 0, 0);
             this.Controls.Add(new Label());
             this.RowCount++;
@@ -57,13 +59,8 @@ namespace SARSearchPatternGenerator
         private void addPoint(Coordinate newVal)
         {
             InputCoordinate c = new InputDecimalDegrees();
-            double lat = 0;
-            double lng = 0;
-            if (this.coordinateInputs.Count > 0)
-            {
-                lat = this.coordinateInputs.Last().getValue().getLat();
-                lng = this.coordinateInputs.Last().getValue().getLng();
-            }
+            double lat = newVal.getLat();
+            double lng = newVal.getLng();
             switch (this.coordinateSystem)
             {
                 case CoordSystem.DecDeg:
@@ -91,13 +88,12 @@ namespace SARSearchPatternGenerator
             c.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            int curRow = this.RowCount;
-            if (curRow <= 1)
+            for (int i = this.RowCount; i <= 1; i++)
             {
                 this.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
                 this.RowCount++;
-                curRow = this.RowCount;
             }
+            int curRow = this.RowCount;
             c.setLabel("Point " + (curRow - 1));
 
             Controls.Remove(add);

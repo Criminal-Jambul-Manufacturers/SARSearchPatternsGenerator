@@ -15,8 +15,11 @@ namespace SARSearchPatternGenerator
     [DataContract]
     public class UTMCoord : Coordinate
     {
+        [DataMember]
         private int lngZone;
+        [DataMember]
         private char latZone;
+        [DataMember]
         private double UTMEasting, UTMNorthing;
 
         /*

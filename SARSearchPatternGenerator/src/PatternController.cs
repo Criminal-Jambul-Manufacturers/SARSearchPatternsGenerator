@@ -17,16 +17,17 @@ namespace SARSearchPatternGenerator
         private PatternDisplay display;
         private string unitName;
         private DistanceUnit unit;
-        private WindowController winController;
         private String patternFileName = "parallel_";
         private Pattern pattern;
+        private string[] patternComments;
+        private int coordSystemID = 0;
 
         public PatternController()
         {
             display = new PatternDisplay();
             display.setController(this);
+            patternComments = new string[4];
         }
-
 
         private String getTimestamp()
         {
@@ -39,29 +40,85 @@ namespace SARSearchPatternGenerator
             pattern = p;
         }
 
-        public void createFromPattern(Pattern p)
+        public void createFromPattern(int index, Pattern p)
         {
+            this.display.setSelectedPattern(index);
             setPattern(p);
-            Console.WriteLine(p.GetType().ToString());
-            switch(p.GetType().ToString())
-            {
-                case "ExpandingSquarePattern":
-                    expandingSquareSetup();
-                    break;
-                case "ParallelTrackPattern":
-                    parallelSearchSetup();
-                    break;
-                case "SectorSearchPattern":
-                    sectorSearchSetup();
-                    break;
-                case "Pattern":
-                    pointToPointSetup();
-                    break;
-            }
-            display.updateFieldsFromPattern(p);
+            changePattern(index, p);
         }
 
-        public void updateSettings()
+        public void loadData(SavedData sd)
+        {
+            if (this.patternComments != null)
+            {
+                patternComments[0] = sd.ExpandingSquareComment == "" ?
+                    (string)DefaultComments.ResourceManager.GetObject("ExpandingSquareComment") :
+                    sd.ExpandingSquareComment;
+                patternComments[1] = sd.SectorSearchComment == "" ?
+                    (string)DefaultComments.ResourceManager.GetObject("SectorSearchComment") :
+                    sd.SectorSearchComment;
+                patternComments[2] = sd.ParallelTrackComment == "" ?
+                    (string)DefaultComments.ResourceManager.GetObject("ParallelTrackComment") :
+                    sd.ParallelTrackComment;
+                patternComments[3] = sd.PointToPointComment == "" ?
+                    (string)DefaultComments.ResourceManager.GetObject("PointToPointComment") :
+                    sd.PointToPointComment;
+            }
+            updateDisplayComment();
+        }
+
+        public override SavedData getSavedData()
+        {
+            SavedData sd = new SavedData();
+            if (this.patternComments != null)
+            {
+                sd.ExpandingSquareComment = patternComments[0];
+                sd.SectorSearchComment = patternComments[1];
+                sd.ParallelTrackComment = patternComments[2];
+                sd.PointToPointComment = patternComments[3];
+            }
+            sd.unitSystem = this.unit.getID();
+            sd.coordinateSystem = this.coordSystemID;
+            sd.patternType = this.display.getSelectedPatternIndex();
+            return sd;
+        }
+
+        private void updateDisplayComment()
+        {
+            if (display != null)
+            {
+                switch (this.display.getSelectedPatternIndex())
+                {
+                    case 0:
+                        display.setComment(patternComments[0]);
+                        break;
+                    case 1:
+                        display.setComment(patternComments[1]);
+                        break;
+                    case 2:
+                        display.setComment(patternComments[2]);
+                        break;
+                    case 3:
+                        display.setComment(patternComments[3]);
+                        break;
+                }
+            }
+        }
+
+        public void onCommentChanged(string newText)
+        {
+            if (display != null)
+            {
+                patternComments[this.display.getSelectedPatternIndex()] = newText;
+            }
+        }
+
+        public void updatePatternComments(int index, string newComment)
+        {
+            patternComments[index] = newComment;
+        }
+
+        public void defaultInitialize()
         {
             expandingSquareSetup();
         }
@@ -102,9 +159,8 @@ namespace SARSearchPatternGenerator
             setPattern(ptpi.getPattern());
         }
 
-        public void changePattern(int index)
+        public void changePattern(int index, Pattern p)
         {
-            Pattern p = display.getInputGroup().getPattern();
             switch(index)
             {
                 case 0:
@@ -125,6 +181,7 @@ namespace SARSearchPatternGenerator
                     break;
             }
             display.updateFieldsFromPattern(p);
+            updateDisplayComment();
         }
 
         public override void onUnitChange(int index)
@@ -174,6 +231,7 @@ namespace SARSearchPatternGenerator
 
         public override void onCoordSystemChange(int index)
         {
+            this.coordSystemID = index;
             switch(index)
             {
                 case 0:

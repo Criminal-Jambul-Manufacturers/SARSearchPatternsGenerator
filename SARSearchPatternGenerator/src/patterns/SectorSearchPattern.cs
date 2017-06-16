@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SARSearchPatternsGenerator.src;
+using SARSearchPatternGenerator.data;
 
 namespace SARSearchPatternGenerator
 {
@@ -18,9 +18,7 @@ namespace SARSearchPatternGenerator
 
         public SectorSearchPattern() :base()
         {
-            comment = (string)DefaultComments.ResourceManager.GetObject("SectorSearchComment");
         }
-
 
         /*
          *  Returns a Color class array of 6 different colours (each doubled) that the KML and GPX classes

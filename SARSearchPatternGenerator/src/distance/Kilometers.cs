@@ -40,5 +40,10 @@ namespace SARSearchPatternGenerator
         {
             return dist;
         }
+
+        public override int getID()
+        {
+            return 3;
+        }
     }
 }

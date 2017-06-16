@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SARSearchPatternGenerator.data {
+namespace SARSearchPatternGenerator {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SARSearchPatternGenerator.data {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SARSearchPatternGenerator.data.DefaultComments", typeof(DefaultComments).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SARSearchPatternGenerator.DefaultComments", typeof(DefaultComments).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

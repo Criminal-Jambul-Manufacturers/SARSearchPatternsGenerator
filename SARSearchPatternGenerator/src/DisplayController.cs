@@ -22,5 +22,6 @@ namespace SARSearchPatternGenerator
         public abstract void onCoordSystemChange(int i);
         public abstract Pattern getPattern();
         public abstract string getComment();
+        public abstract SavedData getSavedData();
     }
 }
