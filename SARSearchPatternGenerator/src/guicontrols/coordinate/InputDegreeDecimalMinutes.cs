@@ -292,14 +292,16 @@ namespace SARSearchPatternGenerator
             try {
                 this.value = new DegDecMin(
                         floatInput1.getValue() * (buttonToggle2.isEnabled() ? -1 : 1),
-                        floatInput3.getValue() * (buttonToggle2.isEnabled() ? -1 : 1),
+                        floatInput3.getValue(),
                         floatInput2.getValue() * (buttonToggle1.isEnabled() ? 1 : -1),
-                        floatInput4.getValue() * (buttonToggle1.isEnabled() ? 1 : -1)
+                        floatInput4.getValue()
                 );
+                this.unflag();
             }
             catch (OutOfBoundsCoordinateException)
             {
                 // keep value the same as it was before
+                this.flag();
             }
         }
 
@@ -326,6 +328,22 @@ namespace SARSearchPatternGenerator
         public override Color getColor()
         {
             return groupBox1.ForeColor;
+        }
+
+        public override void flag()
+        {
+            floatInput1.ForeColor = Color.FromArgb(0, 200, 156, 40);
+            floatInput2.ForeColor = Color.FromArgb(0, 200, 156, 40);
+            floatInput3.ForeColor = Color.FromArgb(0, 200, 156, 40);
+            floatInput4.ForeColor = Color.FromArgb(0, 200, 156, 40);
+        }
+
+        public override void unflag()
+        {
+            floatInput1.ForeColor = Color.Black;
+            floatInput2.ForeColor = Color.Black;
+            floatInput3.ForeColor = Color.Black;
+            floatInput4.ForeColor = Color.Black;
         }
     }
 }

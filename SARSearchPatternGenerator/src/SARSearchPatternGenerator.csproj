@@ -137,6 +137,7 @@
     <Compile Include="guicontrols\pattern\PointToPointInput.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="patterns\PatternID.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="coords\UTMCoord.cs" />

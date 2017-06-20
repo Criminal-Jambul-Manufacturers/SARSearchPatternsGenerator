@@ -12,11 +12,14 @@ namespace SARSearchPatternGenerator
     /// Contains methods that generate a parallel track pattern and stores
     /// the coordinates in the points variable.
     /// </summary>
+    [DataContract]
     public class ParallelTrackPattern : Pattern
     {
         [DataMember]
         private double crossingDistance;
+        [DataMember]
         private double parallelTrackSize;
+        [DataMember]
         private int numCrossings;
 
         public ParallelTrackPattern() : base()

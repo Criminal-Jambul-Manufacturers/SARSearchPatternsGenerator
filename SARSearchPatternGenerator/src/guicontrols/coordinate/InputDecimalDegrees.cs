@@ -233,10 +233,12 @@ namespace SARSearchPatternGenerator
                         floatInput1.getValue() * (buttonToggle1.isEnabled() ? -1 : 1),
                         floatInput2.getValue() * (buttonToggle2.isEnabled() ? 1 : -1)
                 );
+                this.unflag();
             }
             catch (OutOfBoundsCoordinateException)
             {
                 // keep value the same as it was before
+                this.flag();
             }
         }
 
@@ -263,6 +265,18 @@ namespace SARSearchPatternGenerator
         public override Color getColor()
         {
             return groupBox1.ForeColor;
+        }
+
+        public override void flag()
+        {
+            floatInput1.ForeColor = Color.FromArgb(0, 255, 106, 20);
+            floatInput2.ForeColor = Color.FromArgb(0, 255, 106, 20);
+        }
+
+        public override void unflag()
+        {
+            floatInput1.ForeColor = Color.Black;
+            floatInput2.ForeColor = Color.Black;
         }
     }
 }

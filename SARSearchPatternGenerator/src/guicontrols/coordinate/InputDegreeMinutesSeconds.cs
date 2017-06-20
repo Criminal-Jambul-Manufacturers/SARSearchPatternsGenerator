@@ -361,14 +361,16 @@ namespace SARSearchPatternGenerator
             {
                 this.value = new DegMinSec(
                     floatInput1.getValue() * (buttonToggle2.isEnabled() ? -1 : 1),
-                    floatInput3.getValue() * (buttonToggle2.isEnabled() ? -1 : 1),
-                    floatInput5.getValue() * (buttonToggle2.isEnabled() ? -1 : 1),
+                    floatInput3.getValue(),
+                    floatInput5.getValue(),
                     floatInput2.getValue() * (buttonToggle1.isEnabled() ? 1 : -1),
-                    floatInput4.getValue() * (buttonToggle1.isEnabled() ? 1 : -1),
-                    floatInput6.getValue() * (buttonToggle1.isEnabled() ? 1 : -1));
+                    floatInput4.getValue(),
+                    floatInput6.getValue());
+                this.unflag();
             }
             catch (OutOfBoundsCoordinateException)
             {
+                this.flag();
                 // keep value the same as it was before
             }
         }
@@ -390,6 +392,26 @@ namespace SARSearchPatternGenerator
         public override Color getColor()
         {
             return groupBox1.ForeColor;
+        }
+
+        public override void flag()
+        {
+            floatInput1.ForeColor = Color.FromArgb(0, 200, 156, 40);
+            floatInput2.ForeColor = Color.FromArgb(0, 200, 156, 40);
+            floatInput3.ForeColor = Color.FromArgb(0, 200, 156, 40);
+            floatInput4.ForeColor = Color.FromArgb(0, 200, 156, 40);
+            floatInput5.ForeColor = Color.FromArgb(0, 200, 156, 40);
+            floatInput6.ForeColor = Color.FromArgb(0, 200, 156, 40);
+        }
+
+        public override void unflag()
+        {
+            floatInput1.ForeColor = Color.Black;
+            floatInput2.ForeColor = Color.Black;
+            floatInput3.ForeColor = Color.Black;
+            floatInput4.ForeColor = Color.Black;
+            floatInput5.ForeColor = Color.Black;
+            floatInput6.ForeColor = Color.Black;
         }
     }
 }
