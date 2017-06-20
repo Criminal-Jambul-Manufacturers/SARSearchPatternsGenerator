@@ -89,5 +89,14 @@ namespace SARSearchPatternGenerator
         {
             this.Font = new Font(this.Font, FontStyle.Bold);
         }
+
+        virtual public void flag()
+        {
+        }
+
+        virtual public void unflag()
+        {
+
+        }
     }
 }

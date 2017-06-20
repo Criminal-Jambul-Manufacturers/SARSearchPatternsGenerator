@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SARSearchPatternGenerator.data;
+using System.Runtime.Serialization;
 
 namespace SARSearchPatternGenerator
 {
@@ -11,9 +12,12 @@ namespace SARSearchPatternGenerator
     /// Contains methods that generate a sector search pattern and stores
     /// the coordinates in the points variable.
     /// </summary>
+    [DataContract]
     public class SectorSearchPattern : Pattern
     {
+        [DataMember]
         private double crossingDistance, radius;
+        [DataMember]
         private int numCrossings;
 
         public SectorSearchPattern() :base()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SARSearchPatternGenerator.patterns;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -54,7 +55,7 @@ namespace SARSearchPatternGenerator
             pc.defaultInitialize();
             mainWindow.unitChange();
             mainWindow.coordSystemChange();
-            pc.createFromPattern(sd.patternType, p);
+            pc.createFromPattern((PatternID)sd.patternType, p);
             pc.loadData(sd);
             writeSystemText("Pattern Loaded");
         }

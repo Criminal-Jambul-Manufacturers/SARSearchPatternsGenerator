@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SARSearchPatternGenerator.coords;
+using SARSearchPatternGenerator.patterns;
 
 namespace SARSearchPatternGenerator
 {
@@ -40,11 +41,11 @@ namespace SARSearchPatternGenerator
             pattern = p;
         }
 
-        public void createFromPattern(int index, Pattern p)
+        public void createFromPattern(PatternID id, Pattern p)
         {
-            this.display.setSelectedPattern(index);
+            this.display.setSelectedPattern(id);
             setPattern(p);
-            changePattern(index, p);
+            changePattern(id, p);
         }
 
         public void loadData(SavedData sd)
@@ -79,7 +80,7 @@ namespace SARSearchPatternGenerator
             }
             sd.unitSystem = this.unit.getID();
             sd.coordinateSystem = this.coordSystemID;
-            sd.patternType = this.display.getSelectedPatternIndex();
+            sd.patternType = (int)this.display.getSelectedPattern();
             return sd;
         }
 
@@ -87,21 +88,7 @@ namespace SARSearchPatternGenerator
         {
             if (display != null)
             {
-                switch (this.display.getSelectedPatternIndex())
-                {
-                    case 0:
-                        display.setComment(patternComments[0]);
-                        break;
-                    case 1:
-                        display.setComment(patternComments[1]);
-                        break;
-                    case 2:
-                        display.setComment(patternComments[2]);
-                        break;
-                    case 3:
-                        display.setComment(patternComments[3]);
-                        break;
-                }
+                display.setComment(patternComments[(int)this.display.getSelectedPattern()]);
             }
         }
 
@@ -109,7 +96,7 @@ namespace SARSearchPatternGenerator
         {
             if (display != null)
             {
-                patternComments[this.display.getSelectedPatternIndex()] = newText;
+                patternComments[(int)this.display.getSelectedPattern()] = newText;
             }
         }
 
@@ -159,23 +146,23 @@ namespace SARSearchPatternGenerator
             setPattern(ptpi.getPattern());
         }
 
-        public void changePattern(int index, Pattern p)
+        public void changePattern(PatternID id, Pattern p)
         {
-            switch(index)
+            switch(id)
             {
-                case 0:
+                case PatternID.ExpandingSquarePattern:
                     expandingSquareSetup();
                     patternFileName = "expanding_";
                     break;
-                case 1:
+                case PatternID.SectorSearchPattern:
                     sectorSearchSetup();
                     patternFileName = "sector_";
                     break;
-                case 2:
+                case PatternID.ParallelTrackPattern:
                     parallelSearchSetup();
                     patternFileName = "parallel_";
                     break;
-                case 3:
+                case PatternID.PointToPointPattern:
                     pointToPointSetup();
                     patternFileName = "ptop_";
                     break;

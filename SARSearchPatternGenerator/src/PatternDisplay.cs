@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Resources;
 using System.Reflection;
+using SARSearchPatternGenerator.patterns;
 
 namespace SARSearchPatternGenerator
 {
@@ -71,12 +72,10 @@ namespace SARSearchPatternGenerator
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatternDisplay));
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.inputGroup1 = new SARSearchPatternGenerator.PatternInput();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.imageDropdown1 = new SARSearchPatternGenerator.ImageDropdown();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -90,8 +89,6 @@ namespace SARSearchPatternGenerator
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.inputUnits2 = new SARSearchPatternGenerator.InputDistance();
-            this.inputUnits3 = new SARSearchPatternGenerator.InputDistance();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -104,10 +101,14 @@ namespace SARSearchPatternGenerator
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.inputUnits1 = new SARSearchPatternGenerator.InputUnits();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.inputGroup1 = new SARSearchPatternGenerator.PatternInput();
+            this.imageDropdown1 = new SARSearchPatternGenerator.ImageDropdown();
+            this.inputUnits2 = new SARSearchPatternGenerator.InputDistance();
+            this.inputUnits3 = new SARSearchPatternGenerator.InputDistance();
+            this.inputUnits1 = new SARSearchPatternGenerator.InputUnits();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -144,34 +145,6 @@ namespace SARSearchPatternGenerator
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(345, 348);
             this.tableLayoutPanel2.TabIndex = 2;
-            // 
-            // inputGroup1
-            // 
-            this.inputGroup1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputGroup1.AutoScroll = true;
-            this.inputGroup1.AutoSize = true;
-            this.inputGroup1.ColumnCount = 1;
-            this.inputGroup1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.inputGroup1.Location = new System.Drawing.Point(3, 3);
-            this.inputGroup1.Name = "inputGroup1";
-            this.inputGroup1.RowCount = 1;
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.inputGroup1.Size = new System.Drawing.Size(339, 276);
-            this.inputGroup1.TabIndex = 0;
             // 
             // tableLayoutPanel3
             // 
@@ -232,21 +205,6 @@ namespace SARSearchPatternGenerator
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(339, 24);
             this.tableLayoutPanel5.TabIndex = 3;
-            // 
-            // imageDropdown1
-            // 
-            this.imageDropdown1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.imageDropdown1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.imageDropdown1.Items.AddRange(new object[] {
-            "Expanding Square",
-            "Sector Search",
-            "Parallel Track Search",
-            "Point-to-Point"});
-            this.imageDropdown1.Location = new System.Drawing.Point(178, 3);
-            this.imageDropdown1.Name = "imageDropdown1";
-            this.imageDropdown1.Size = new System.Drawing.Size(158, 24);
-            this.imageDropdown1.TabIndex = 2;
             // 
             // label2
             // 
@@ -421,22 +379,6 @@ namespace SARSearchPatternGenerator
             this.label10.TabIndex = 5;
             this.label10.Text = "Probability of Detection:";
             // 
-            // inputUnits2
-            // 
-            this.inputUnits2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputUnits2.Location = new System.Drawing.Point(182, 3);
-            this.inputUnits2.Name = "inputUnits2";
-            this.inputUnits2.Size = new System.Drawing.Size(277, 30);
-            this.inputUnits2.TabIndex = 6;
-            // 
-            // inputUnits3
-            // 
-            this.inputUnits3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputUnits3.Location = new System.Drawing.Point(182, 39);
-            this.inputUnits3.Name = "inputUnits3";
-            this.inputUnits3.Size = new System.Drawing.Size(277, 30);
-            this.inputUnits3.TabIndex = 7;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -576,13 +518,6 @@ namespace SARSearchPatternGenerator
             this.comboBox1.TabIndex = 2;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // inputUnits1
-            // 
-            this.inputUnits1.Location = new System.Drawing.Point(111, 41);
-            this.inputUnits1.Name = "inputUnits1";
-            this.inputUnits1.Size = new System.Drawing.Size(336, 27);
-            this.inputUnits1.TabIndex = 3;
-            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -624,6 +559,72 @@ namespace SARSearchPatternGenerator
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
+            // 
+            // inputGroup1
+            // 
+            this.inputGroup1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.inputGroup1.AutoScroll = true;
+            this.inputGroup1.AutoSize = true;
+            this.inputGroup1.ColumnCount = 1;
+            this.inputGroup1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.inputGroup1.Location = new System.Drawing.Point(3, 3);
+            this.inputGroup1.Name = "inputGroup1";
+            this.inputGroup1.RowCount = 1;
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.inputGroup1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.inputGroup1.Size = new System.Drawing.Size(339, 276);
+            this.inputGroup1.TabIndex = 0;
+            // 
+            // imageDropdown1
+            // 
+            this.imageDropdown1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.imageDropdown1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.imageDropdown1.Items.AddRange(new object[] {
+            "Parallel Track Search",
+            "Expanding Square",
+            "Sector Search",
+            "Point-to-Point"});
+            this.imageDropdown1.Location = new System.Drawing.Point(178, 3);
+            this.imageDropdown1.Name = "imageDropdown1";
+            this.imageDropdown1.Size = new System.Drawing.Size(158, 24);
+            this.imageDropdown1.TabIndex = 2;
+            // 
+            // inputUnits2
+            // 
+            this.inputUnits2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.inputUnits2.Location = new System.Drawing.Point(182, 3);
+            this.inputUnits2.Name = "inputUnits2";
+            this.inputUnits2.Size = new System.Drawing.Size(277, 30);
+            this.inputUnits2.TabIndex = 6;
+            // 
+            // inputUnits3
+            // 
+            this.inputUnits3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.inputUnits3.Location = new System.Drawing.Point(182, 39);
+            this.inputUnits3.Name = "inputUnits3";
+            this.inputUnits3.Size = new System.Drawing.Size(277, 30);
+            this.inputUnits3.TabIndex = 7;
+            // 
+            // inputUnits1
+            // 
+            this.inputUnits1.Location = new System.Drawing.Point(111, 41);
+            this.inputUnits1.Name = "inputUnits1";
+            this.inputUnits1.Size = new System.Drawing.Size(336, 27);
+            this.inputUnits1.TabIndex = 3;
             // 
             // PatternDisplay
             // 
@@ -726,7 +727,7 @@ namespace SARSearchPatternGenerator
 
         private void imageDropdown1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.controller.changePattern(imageDropdown1.SelectedIndex, this.inputGroup1.getPattern());
+            this.controller.changePattern((PatternID)imageDropdown1.SelectedIndex, this.inputGroup1.getPattern());
         }
 
         public void changeUnitSystem(string name, DistanceUnit d)
@@ -793,10 +794,10 @@ namespace SARSearchPatternGenerator
 
         }
 
-        internal void setSelectedPattern(int index)
+        internal void setSelectedPattern(PatternID id)
         {
             this.imageDropdown1.SelectedIndexChanged -= imageDropdown1_SelectedIndexChanged;
-            this.imageDropdown1.SelectedIndex = index;
+            this.imageDropdown1.SelectedIndex = (int)id;
             this.imageDropdown1.SelectedIndexChanged += imageDropdown1_SelectedIndexChanged;
         }
 
@@ -854,9 +855,9 @@ namespace SARSearchPatternGenerator
             this.textBox1.Text = st;
         }
 
-        public int getSelectedPatternIndex()
+        public PatternID getSelectedPattern()
         {
-            return imageDropdown1.SelectedIndex;
+            return (PatternID)imageDropdown1.SelectedIndex;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
